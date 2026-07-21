@@ -23163,6 +23163,9 @@ add_executable(interop_client
   ${_gRPC_PROTO_GENS_DIR}/src/proto/grpc/testing/test.grpc.pb.cc
   ${_gRPC_PROTO_GENS_DIR}/src/proto/grpc/testing/test.pb.h
   ${_gRPC_PROTO_GENS_DIR}/src/proto/grpc/testing/test.grpc.pb.h
+  src/cpp/ext/otel/otel_client_call_tracer.cc
+  src/cpp/ext/otel/otel_plugin.cc
+  src/cpp/ext/otel/otel_server_call_tracer.cc
   test/core/credentials/call/oauth2/oauth2_utils.cc
   test/cpp/interop/backend_metrics_lb_policy.cc
   test/cpp/interop/client.cc
@@ -23198,10 +23201,10 @@ target_include_directories(interop_client
 
 target_link_libraries(interop_client
   ${_gRPC_ALLTARGETS_LIBRARIES}
+  opentelemetry-cpp::api
+  opentelemetry-cpp::trace
   grpc++_test_config
   grpc++_test_util
-  grpc_opentelemetry
-  opentelemetry-cpp::otlp_grpc_exporter
 )
 
 
@@ -23221,6 +23224,9 @@ add_executable(interop_server
   ${_gRPC_PROTO_GENS_DIR}/src/proto/grpc/testing/test.grpc.pb.cc
   ${_gRPC_PROTO_GENS_DIR}/src/proto/grpc/testing/test.pb.h
   ${_gRPC_PROTO_GENS_DIR}/src/proto/grpc/testing/test.grpc.pb.h
+  src/cpp/ext/otel/otel_client_call_tracer.cc
+  src/cpp/ext/otel/otel_plugin.cc
+  src/cpp/ext/otel/otel_server_call_tracer.cc
   src/cpp/server/orca/orca_service.cc
   test/cpp/interop/interop_server.cc
   test/cpp/interop/interop_server_bootstrap.cc
@@ -23255,10 +23261,10 @@ target_include_directories(interop_server
 
 target_link_libraries(interop_server
   ${_gRPC_ALLTARGETS_LIBRARIES}
+  opentelemetry-cpp::api
+  opentelemetry-cpp::trace
   grpc++_test_config
   grpc++_test_util
-  grpc_opentelemetry
-  opentelemetry-cpp::otlp_grpc_exporter
 )
 
 
