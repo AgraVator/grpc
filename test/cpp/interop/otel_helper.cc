@@ -22,19 +22,18 @@
 #define HAVE_ABSEIL
 #endif
 
+#include <grpcpp/ext/otel_plugin.h>
+
 #include <cstdlib>
 #include <memory>
 #include <mutex>
 #include <string>
 
-#include "absl/flags/flag.h"
-#include "absl/log/log.h"
-
-#include <grpcpp/ext/otel_plugin.h>
-
 #include "opentelemetry/exporters/otlp/otlp_grpc_exporter_factory.h"
 #include "opentelemetry/sdk/trace/simple_processor_factory.h"
 #include "opentelemetry/sdk/trace/tracer_provider.h"
+#include "absl/flags/flag.h"
+#include "absl/log/log.h"
 
 ABSL_FLAG(bool, enable_opentelemetry, false,
           "Whether to enable OpenTelemetry Tracing");
@@ -66,9 +65,8 @@ void MaybeRegisterOpenTelemetry() {
     auto processor =
         opentelemetry::sdk::trace::SimpleSpanProcessorFactory::Create(
             std::move(exporter));
-    auto provider =
-        std::make_shared<opentelemetry::sdk::trace::TracerProvider>(
-            std::move(processor));
+    auto provider = std::make_shared<opentelemetry::sdk::trace::TracerProvider>(
+        std::move(processor));
     std::atomic_store(&g_tracer_provider, provider);
 
     auto status =
