@@ -16,17 +16,14 @@
 //
 //
 
-#include <memory>
-#include <unordered_map>
-
-#include "absl/flags/flag.h"
-#include "absl/log/log.h"
-
 #include <grpc/grpc.h>
 #include <grpc/support/alloc.h>
 #include <grpcpp/channel.h>
 #include <grpcpp/client_context.h>
 #include <grpcpp/support/channel_arguments.h>
+
+#include <memory>
+#include <unordered_map>
 
 #include "src/core/util/crash.h"
 #include "src/core/util/string.h"
@@ -35,6 +32,8 @@
 #include "test/cpp/interop/interop_client.h"
 #include "test/cpp/interop/otel_helper.h"
 #include "test/cpp/util/test_config.h"
+#include "absl/flags/flag.h"
+#include "absl/log/log.h"
 
 ABSL_FLAG(bool, use_alts, false,
           "Whether to use alts. Enable alts will disable tls.");
@@ -223,13 +222,15 @@ int main(int argc, char** argv) {
             grpc::experimental::ClientInterceptorFactoryInterface>>
             factories;
         if (!additional_metadata->empty()) {
-          factories.emplace_back(std::make_unique<
-              grpc::testing::AdditionalMetadataInterceptorFactory>(
+          factories.emplace_back(
+              std::make_unique<
+                  grpc::testing::AdditionalMetadataInterceptorFactory>(
                   *additional_metadata));
         }
         if (absl::GetFlag(FLAGS_log_metadata_and_status)) {
-          factories.emplace_back(std::make_unique<
-              grpc::testing::MetadataAndStatusLoggerInterceptorFactory>());
+          factories.emplace_back(
+              std::make_unique<
+                  grpc::testing::MetadataAndStatusLoggerInterceptorFactory>());
         }
         std::string service_config_json =
             absl::GetFlag(FLAGS_service_config_json);
