@@ -11,8 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""OpenTelemetry Tracing Interop Helper for Python gRPC Interop Client/Server
-"""
+"""OpenTelemetry Tracing Interop Helper for Python gRPC Interop Client/Server"""
 
 import os
 from typing import Optional, Tuple
@@ -254,6 +253,7 @@ class OTelServerInterceptor(grpc.ServerInterceptor):
 
         if handler.unary_unary:
             orig_func = handler.unary_unary
+
             def wrapper(request, context):
                 try:
                     res = orig_func(request, context)
@@ -262,6 +262,7 @@ class OTelServerInterceptor(grpc.ServerInterceptor):
                 finally:
                     server_span.end()
                     flush_tracer_provider()
+
             return grpc.unary_unary_rpc_method_handler(
                 wrapper,
                 request_deserializer=handler.request_deserializer,
