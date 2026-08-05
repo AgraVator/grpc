@@ -17219,6 +17219,7 @@ targets:
   - test/cpp/interop/otel_helper.cc
   deps:
   - opentelemetry-cpp::api
+  - opentelemetry-cpp::metrics
   - opentelemetry-cpp::trace
   - grpc++_test_config
   - grpc++_test_util
@@ -17248,6 +17249,7 @@ targets:
   - test/cpp/interop/server_helper.cc
   deps:
   - opentelemetry-cpp::api
+  - opentelemetry-cpp::metrics
   - opentelemetry-cpp::trace
   - grpc++_test_config
   - grpc++_test_util

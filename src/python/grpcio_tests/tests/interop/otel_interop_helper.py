@@ -159,7 +159,6 @@ def shutdown_tracer_provider():
         time.sleep(0.5)
 
 
-
 def pack_grpc_trace_bin(
     trace_id_int: int, span_id_int: int, is_sampled: bool = True
 ) -> bytes:
