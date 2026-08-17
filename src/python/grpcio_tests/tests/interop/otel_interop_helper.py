@@ -330,4 +330,3 @@ def parse_traceparent(
         return trace_id_int, span_id_int, is_sampled
     except ValueError:
         return None, None, False
-
