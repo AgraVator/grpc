@@ -161,6 +161,7 @@ class OTelInteropHelperTest(unittest.TestCase):
 
     def test_unpack_grpc_trace_bin_base64_and_invalid(self):
         import base64
+
         trace_id = 0x4BF92F3577B34DA6A3CE929D0E0E4736
         span_id = 0x00F067AA0BA902B7
         packed = otel_interop_helper.pack_grpc_trace_bin(
