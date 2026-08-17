@@ -37,7 +37,6 @@ from tests.interop import otel_interop_helper
 from tests.interop import resources
 
 
-
 def parse_interop_client_args(argv):
     parser = argparse_flags.ArgumentParser()
     parser.add_argument(
