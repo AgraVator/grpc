@@ -124,7 +124,8 @@ void MaybeRegisterOpenTelemetry() {
     builder.SetTracerProvider(tracer_provider);
     builder.SetMeterProvider(meter_provider);
     builder.SetTextMapPropagator(
-        std::make_unique<opentelemetry::trace::propagation::HttpTraceContext>());
+        std::make_unique<
+            opentelemetry::trace::propagation::HttpTraceContext>());
     builder.EnableMetrics({
         "grpc.tcp.*",
         "grpc.client.*",

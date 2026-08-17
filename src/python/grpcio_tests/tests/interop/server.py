@@ -13,10 +13,9 @@
 # limitations under the License.
 """The Python implementation of the GRPC interoperability test server."""
 
-import os
-
 from concurrent import futures
 import logging
+import os
 import signal
 
 from absl import app
