@@ -251,6 +251,7 @@ def resolve_binary(path):
             return os.path.abspath(p)
     return path
 
+
 _DEFAULT_SERVER_PORT = 8080
 
 _SKIP_CLIENT_COMPRESSION = [
