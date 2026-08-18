@@ -1382,8 +1382,9 @@ class GrpcTraceBinTextMapPropagator : public TextMapPropagator {
       return context;
     }
     std::string base64_unescaped_val;
-    if (!absl::Base64Unescape(NoStdStringViewToAbslStringView(grpc_trace_bin_val),
-                             &base64_unescaped_val)) {
+    if (!absl::Base64Unescape(
+            NoStdStringViewToAbslStringView(grpc_trace_bin_val),
+            &base64_unescaped_val)) {
       return context;
     }
     auto span_context = GrpcTraceBinHeaderToSpanContext(base64_unescaped_val);
@@ -1391,10 +1392,9 @@ class GrpcTraceBinTextMapPropagator : public TextMapPropagator {
       return context;
     }
     return opentelemetry::trace::SetSpan(
-        context,
-        std::shared_ptr<opentelemetry::trace::Span>(
-            new (std::nothrow) opentelemetry::trace::DefaultSpan(
-                std::move(span_context))));
+        context, std::shared_ptr<opentelemetry::trace::Span>(
+                     new (std::nothrow) opentelemetry::trace::DefaultSpan(
+                         std::move(span_context))));
   }
 
   void Inject(
