@@ -111,8 +111,8 @@ void MaybeRegisterOpenTelemetry() {
               opentelemetry::trace::propagation::HttpTraceContext>());
     }
     if (prop_flag == "both" || prop_flag == "grpc_trace_bin") {
-      propagators.push_back(
-          grpc::OpenTelemetryPluginBuilder::MakeGrpcTraceBinTextMapPropagator());
+      propagators.push_back(grpc::OpenTelemetryPluginBuilder::
+                                MakeGrpcTraceBinTextMapPropagator());
     }
     if (propagators.size() == 1) {
       builder.SetTextMapPropagator(std::move(propagators[0]));
