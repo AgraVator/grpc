@@ -20290,6 +20290,29 @@ targets:
   - opentelemetry-cpp::metrics
   - opentelemetry-cpp::trace
   - grpc++_test_util
+- name: otlp_collector_stress_test
+  gtest: true
+  build: test
+  language: c++
+  headers:
+  - src/cpp/ext/otel/key_value_iterable.h
+  - src/cpp/ext/otel/otel_client_call_tracer.h
+  - src/cpp/ext/otel/otel_plugin.h
+  - src/cpp/ext/otel/otel_server_call_tracer.h
+  - test/cpp/interop/otel_helper.h
+  src:
+  - src/cpp/ext/otel/otel_client_call_tracer.cc
+  - src/cpp/ext/otel/otel_plugin.cc
+  - src/cpp/ext/otel/otel_server_call_tracer.cc
+  - test/cpp/interop/otel_helper.cc
+  - test/cpp/interop/otlp_collector_stress_test.cc
+  deps:
+  - gtest
+  - grpc++
+  - opentelemetry-cpp::api
+  - opentelemetry-cpp::trace
+  - grpc_test_util
+  - grpc++_test_config
 - name: out_of_bounds_bad_client_test
   gtest: true
   build: test

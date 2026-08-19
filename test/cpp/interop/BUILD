@@ -865,4 +865,3 @@ grpc_cc_test(
         "@opentelemetry_proto//:trace_service_proto_cc",
     ],
 )
-
