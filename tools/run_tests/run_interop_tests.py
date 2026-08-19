@@ -53,10 +53,8 @@ def wait_for_port(port, host="localhost", timeout=5.0):
 
 import python_utils.dockerjob as dockerjob
 import python_utils.jobset as jobset
-from python_utils.otel_tracing_verifier import (
-    resolve_binary,
-    verify_tracing_spans,
-)
+from python_utils.otel_tracing_verifier import resolve_binary
+from python_utils.otel_tracing_verifier import verify_tracing_spans
 import python_utils.report_utils as report_utils
 
 # It's ok to not import because this is only necessary to upload results to BQ.
