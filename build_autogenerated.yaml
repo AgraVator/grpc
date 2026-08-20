@@ -17546,9 +17546,9 @@ targets:
   - gpr
 - name: interop_client
   build: plugin_test
-  plugin_option: gRPC_BUILD_GRPCPP_OTEL_PLUGIN
   run: false
   language: c++
+  plugin_option: gRPC_BUILD_GRPCPP_OTEL_PLUGIN
   headers:
   - src/cpp/ext/otel/key_value_iterable.h
   - src/cpp/ext/otel/otel_client_call_tracer.h
@@ -17579,9 +17579,9 @@ targets:
   - grpc++_test_util
 - name: interop_server
   build: plugin_test
-  plugin_option: gRPC_BUILD_GRPCPP_OTEL_PLUGIN
   run: false
   language: c++
+  plugin_option: gRPC_BUILD_GRPCPP_OTEL_PLUGIN
   headers:
   - src/cpp/ext/otel/key_value_iterable.h
   - src/cpp/ext/otel/otel_client_call_tracer.h
