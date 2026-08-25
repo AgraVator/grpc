@@ -155,7 +155,9 @@ def verify_tracing_spans(spans_file, expected_runs_count=1, poll_timeout=30.0):
             )
         )
 
-        print(f"Verifying Trace {idx}/{len(client_spans)} (TraceID: {trace_id}):")
+        print(
+            f"Verifying Trace {idx}/{len(client_spans)} (TraceID: {trace_id}):"
+        )
 
         # 1. Assert parent-child hierarchy
         if attempt_span.get("parent_span_id") != client_span.get("span_id"):
