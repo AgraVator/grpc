@@ -24,9 +24,9 @@ git submodule update --init
 # Also show the current commit SHA that will be tested.
 git clone -b otel-interop-test-suite --recursive https://github.com/AgraVator/grpc-go ./../grpc-go && (cd ../grpc-go; git rev-parse HEAD)
 git clone -b otel-interop-test-suite --recursive https://github.com/AgraVator/grpc-java ./../grpc-java && (cd ../grpc-java; git rev-parse HEAD)
-git clone --recursive https://github.com/grpc/grpc-node ./../grpc-node && (cd ../grpc-node; git rev-parse HEAD)
-git clone --recursive https://github.com/grpc/grpc-dart ./../grpc-dart && (cd ../grpc-dart; git rev-parse HEAD)
-git clone --recursive https://github.com/grpc/grpc-dotnet ./../grpc-dotnet && (cd ../grpc-dotnet; git rev-parse HEAD)
+# git clone --recursive https://github.com/grpc/grpc-node ./../grpc-node && (cd ../grpc-node; git rev-parse HEAD)
+# git clone --recursive https://github.com/grpc/grpc-dart ./../grpc-dart && (cd ../grpc-dart; git rev-parse HEAD)
+# git clone --recursive https://github.com/grpc/grpc-dotnet ./../grpc-dotnet && (cd ../grpc-dotnet; git rev-parse HEAD)
 
 # Grab the service account key to run interop tests against prod backends.
 mkdir ~/service_account
