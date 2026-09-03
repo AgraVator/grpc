@@ -70,8 +70,14 @@ void MaybeRegisterOpenTelemetry() {
 
     // Create OTLP Grpc Exporter
     opentelemetry::exporter::otlp::OtlpGrpcExporterOptions trace_opts;
-    if (!absl::GetFlag(FLAGS_otel_collector_address).empty()) {
-      trace_opts.endpoint = absl::GetFlag(FLAGS_otel_collector_address);
+    std::string endpoint = absl::GetFlag(FLAGS_otel_collector_address);
+    if (!endpoint.empty()) {
+      if (endpoint.find("https://") == 0) {
+        endpoint = endpoint.substr(8);
+      } else if (endpoint.find("http://") == 0) {
+        endpoint = endpoint.substr(7);
+      }
+      trace_opts.endpoint = endpoint;
     }
 
     auto trace_exporter =
