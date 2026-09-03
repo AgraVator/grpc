@@ -824,7 +824,10 @@ grpc_cc_binary(
         "protobuf",
         "protobuf_headers",
     ],
-    tags = ["nobuilder"],
+    tags = [
+        "grpc:broken-internally",
+        "nobuilder",
+    ],
     deps = [
         "//:gpr",
         "//:grpc++",
