@@ -138,6 +138,8 @@ def append_junit_xml_results(
                 error_count += 1
             elif result.state == "SKIPPED":
                 ET.SubElement(xml_test, "skipped", message="Skipped")
+            if filtered_msg:
+                ET.SubElement(xml_test, "system-out").text = filtered_msg
     testsuite.set("failures", str(failure_count))
     testsuite.set("errors", str(error_count))
 

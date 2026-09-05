@@ -1183,6 +1183,9 @@ def cloud_to_cloud_jobspec(
         flake_retries=4 if args.allow_flakes else 0,
         timeout_retries=2 if args.allow_flakes else 0,
         kill_handler=_job_kill_handler,
+        verbose_success=(
+            test_case == "test_unary_rpc_tracing_export" or args.verbose
+        ),
     )
     if docker_image:
         test_job.container_name = container_name
@@ -2112,10 +2115,17 @@ finally:
             os.remove(_collector_spans_file)
         except OSError:
             pass
-    # Check if servers are still running.
+    # Check if servers are still running and print their logs.
     for server, job in list(server_jobs.items()):
         if not job.is_running():
             print('Server "%s" has exited prematurely.' % server)
+        print('=== Docker logs for server "%s" ===' % server)
+        try:
+            subprocess.run(
+                ["docker", "logs", "--tail", "100", job._container_name]
+            )
+        except Exception as e:
+            print("Failed to get docker logs for %s: %s" % (server, e))
 
     dockerjob.finish_jobs([j for j in server_jobs.values()])
 

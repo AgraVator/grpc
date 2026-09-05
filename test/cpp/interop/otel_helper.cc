@@ -64,7 +64,14 @@ void MaybeRegisterOpenTelemetry() {
   std::call_once(g_otel_init_once, []() {
     bool enabled = absl::GetFlag(FLAGS_enable_opentelemetry) ||
                    absl::GetFlag(FLAGS_otel_exporter) == "otlp";
+    LOG(INFO) << "[OTEL_DEBUG][CPP] MaybeRegisterOpenTelemetry called: "
+              << "enable_opentelemetry="
+              << absl::GetFlag(FLAGS_enable_opentelemetry)
+              << ", otel_exporter=" << absl::GetFlag(FLAGS_otel_exporter)
+              << ", otel_collector_address="
+              << absl::GetFlag(FLAGS_otel_collector_address);
     if (!enabled || absl::GetFlag(FLAGS_otel_exporter) == "none") {
+      LOG(INFO) << "[OTEL_DEBUG][CPP] Tracing disabled.";
       return;
     }
 
@@ -78,6 +85,7 @@ void MaybeRegisterOpenTelemetry() {
         endpoint = endpoint.substr(7);
       }
       trace_opts.endpoint = endpoint;
+      LOG(INFO) << "[OTEL_DEBUG][CPP] Exporter endpoint set to: " << endpoint;
     }
 
     auto trace_exporter =
