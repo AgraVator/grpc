@@ -22,7 +22,7 @@ git submodule update --init
 
 # Clone repositories for languages tested by the interop test suite
 # Also show the current commit SHA that will be tested.
-git clone -b otel-interop-test-suite --recursive https://github.com/AgraVator/grpc-go ./../grpc-go && (cd ../grpc-go; git rev-parse HEAD)
+git clone -b otel-interop-test-debug --recursive https://github.com/AgraVator/grpc-go ./../grpc-go && (cd ../grpc-go; git rev-parse HEAD)
 git clone -b otel-interop-test-suite --recursive https://github.com/AgraVator/grpc-java ./../grpc-java && (cd ../grpc-java; git rev-parse HEAD)
 git clone --recursive https://github.com/grpc/grpc-node ./../grpc-node && (cd ../grpc-node; git rev-parse HEAD)
 git clone --recursive https://github.com/grpc/grpc-dart ./../grpc-dart && (cd ../grpc-dart; git rev-parse HEAD)
