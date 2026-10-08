@@ -51,7 +51,7 @@ def wait_for_port(port, host="localhost", timeout=5.0):
     return False
 
 
-def wait_for_server_ready(port, host="localhost", timeout=30.0):
+def wait_for_server_ready(port, host="localhost", timeout=60.0):
     """Waits until a server behind a docker port mapping is accepting RPCs.
 
     A plain TCP connect is not sufficient: docker-proxy accepts the connection
